@@ -1,0 +1,35 @@
+name: 버그 신고
+description: 재현 가능한 오류와 실행 환경 공유
+title: "[Bug] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 문제 요약
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 재현 절차
+      placeholder: "1. 실행 환경 준비\n2. 실행한 명령\n3. 오류 발생"
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: 기대 동작과 실제 동작
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 실행 환경
+      description: OS, 커밋 SHA, 장치/보드, 툴체인·펌웨어 버전을 기록하세요.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 로그 및 추가 자료
+      description: 토큰·비밀번호·개인정보를 제거하세요. 대용량 자료는 팀이 승인한 저장 위치의 링크로 공유하세요.
