@@ -1,68 +1,71 @@
-# 저장소 운영 설정 체크리스트
+# 저장소 운영 설정과 점검
 
-> 관리자와 팀이 함께 확인할 항목입니다. 이 문서를 추가하는 것만으로 아래 설정이 적용되지는 않습니다.
+## 적용 범위
 
-## 현재 확인한 상태
+이 저장소는 조직 소개, 공통 협업 안내와 템플릿을 관리합니다. 코드 저장소를 새로 만들면 프로젝트별 설정을 따로 적용해야 합니다.
 
-2026-09-22 문서 작성 시점의 **NOMAD-DnA/.github 저장소** 기준입니다. 다른 조직 저장소의 상태를 의미하지 않습니다.
+## 운영 기준
 
-- 공개 저장소이며 기본 브랜치는 main입니다.
-- main은 보호되지 않은 상태로 조회되었습니다.
-- 저장소 ruleset 목록은 비어 있었습니다.
-- 기존 파일은 루트 README와 조직 소개용 profile/README였습니다.
+- main 변경은 PR로 제안합니다.
+- 작성자 외 쓰기 권한이 있는 팀원 최소 1명이 승인합니다.
+- 추가 변경으로 기존 승인이 무효화되면 재리뷰합니다.
+- 리뷰 대화를 해결하고 docs-check 검사를 통과한 뒤 Squash and merge합니다.
+- 작성자는 승인·검사 상태를 확인한 뒤 병합합니다. 부재 시 리뷰어와 병합 담당자를 정합니다.
+- main 강제 push와 삭제를 막고, 병합된 작업 브랜치는 자동 정리합니다.
 
-아래는 **권장 설정안**이며, 이번 문서 작성에서 권한·보호 규칙·병합 설정을 변경하지 않았습니다. 별도의 조직 정책이나 이후 변경 여부는 설정 화면에서 다시 확인하세요.
+위 기준의 실제 강제 여부는 GitHub Settings → Rules → Rulesets와 General에서 확인합니다. 문서와 설정은 별개이며, 설정 변경 PR/작업의 완료 기록을 함께 확인하세요.
 
-## 팀이 먼저 합의할 사항
+## 추가된 파일
 
-- [ ] main + 작업 브랜치 운영에 동의하는가?
-- [ ] 작성자 외 최소 1명의 리뷰를 기본으로 할 것인가?
-- [ ] 승인 이후 최종 병합은 누가 담당할 것인가?
-- [ ] Squash and merge를 기본으로 할 것인가?
-- [ ] 문서만 바꾸는 PR과 긴급 수정의 예외 절차는 무엇인가?
-- [ ] 프로젝트별 필수 빌드·테스트와 실제 장치 시험 범위는 무엇인가?
+| 파일 | 역할 |
+| --- | --- |
+| [.github/PULL_REQUEST_TEMPLATE.md](../.github/PULL_REQUEST_TEMPLATE.md) | PR 작성 시 변경 목적·검증·리뷰 항목 제공 |
+| [.github/ISSUE_TEMPLATE/](../.github/ISSUE_TEMPLATE/) | 작업 요청·버그 신고·설계 논의 양식 |
+| [.github/workflows/docs.yml](../.github/workflows/docs.yml) | PR과 main push에서 문서 검사 |
+| [.editorconfig](../.editorconfig) | UTF-8, 들여쓰기, 줄바꿈 기본값 |
+| [.gitattributes](../.gitattributes) | Git의 텍스트 줄바꿈 규칙 |
+| [.gitignore](../.gitignore) | 인증정보·로컬 설정·Python 임시 파일 제외 |
+| [프로젝트 README 작성 틀](PROJECT_README_TEMPLATE.md) | 새 코드 저장소의 환경·구성·검증 안내 |
 
-## GitHub에서 확인할 설정
+## 문서 CI
 
-### 권한과 인증
+GitHub Actions의 **Documentation checks / docs-check** 작업이 다음을 검사합니다.
 
-- [ ] 조직 초대와 팀별 저장소 접근 권한을 확인합니다.
-- [ ] 일반 개발자에게 필요한 쓰기 권한을 부여하되 관리자 권한은 필요한 담당자로 제한합니다.
-- [ ] 계정 보안과 인증 수단을 확인하고 토큰·계정을 공동 사용하지 않습니다.
+- UTF-8, LF, 파일 끝 줄바꿈
+- 제목의 기본 공백, 코드 블록 닫힘, 코드 예시 바깥의 충돌 표시
+- 일반 Markdown 인라인 링크의 로컬 파일 존재 여부
+- 이 저장소 main을 가리키는 절대 GitHub 파일 링크의 실제 대상
+- 검사기 자체의 회귀 테스트
 
-### main 보호
+외부 웹사이트 연결, 링크의 #앵커, HTML 링크, 참조형 링크, Markdown 전체 문법은 검사하지 않습니다. Notion 접근 권한이나 프로젝트 코드·장치의 정상 작동도 보장하지 않습니다.
 
-저장소 Settings에서 Rulesets 또는 Branch protection을 확인하고, 사용하는 방식과 요금제에서 지원하는 설정을 적용합니다.
+Python 3.9 이상에서 저장소 루트에서 실행합니다.
 
-- [ ] main 변경에 PR을 요구합니다.
-- [ ] 합의한 최소 승인 수를 설정합니다.
-- [ ] 리뷰 대화 해결을 요구할지 결정합니다.
-- [ ] 추가 push로 승인 대상 내용이 바뀌었을 때 재승인을 요구할지 결정합니다.
-- [ ] force push와 삭제를 제한하고 우회 가능한 역할도 확인합니다.
-- [ ] 실제 CI가 구축된 뒤 필요한 상태 검사를 필수로 지정합니다.
+```bash
+python -m unittest discover -s tests -v
+python scripts/check_docs.py
+```
 
-CI를 만들지 않은 상태에서 존재하지 않는 검사 이름을 필수로 걸면 병합이 막힐 수 있습니다. 관리자가 설정 후 시험 PR로 실제 동작을 확인합니다.
+워크플로는 contents: read 권한만 사용하며 checkout 자격증명을 남기지 않습니다. PR 코드는 pull_request 이벤트의 GitHub 호스팅 러너에서 검사하고, 비밀정보가 필요한 검사는 수행하지 않습니다.
 
-### 병합과 유지보수
+## 다른 저장소에 적용할 때
 
-- [ ] Squash merge 허용 여부와 다른 병합 방식의 사용 기준을 정합니다.
-- [ ] 병합 후 원격 브랜치 자동 삭제 여부를 정합니다.
-- [ ] 각 프로젝트 README에 설치·빌드·실행·테스트 명령을 기록합니다.
-- [ ] 프로젝트별 .gitignore와 대용량 파일 관리 방식을 정합니다.
-- [ ] 필요하면 이슈·PR 템플릿과 CODEOWNERS를 별도 PR로 추가합니다.
+- 공개 .github 저장소의 지원 대상 공통 기여 지침·이슈·PR 템플릿은 자체 파일이 없는 조직 저장소에서 기본값으로 사용될 수 있습니다.
+- 기본 파일이 각 저장소 clone에 자동으로 복사되는 것은 아닙니다.
+- Ruleset, CI 워크플로, .gitignore, .editorconfig, .gitattributes는 새 코드 저장소에 자동 적용되지 않습니다.
+- CODEOWNERS도 조직 공통 기본 파일로 상속되지 않습니다. 담당 모듈과 쓰기 권한을 확인한 뒤 각 저장소에 추가합니다.
+- .gitignore는 이미 추적 중인 비밀정보를 제거하지 않습니다. 유출되면 먼저 키를 폐기·재발급합니다.
 
-## 조직 공통 문서가 적용되는 범위
+## 팀 확인이 필요한 정보
 
-공개 `.github` 저장소에 있는 지원 대상 커뮤니티 파일은, 자체 파일이 없는 조직 저장소에서 기본 안내로 사용될 수 있습니다.
+- 프로젝트의 구체적인 목표·범위·현재 단계
+- 팀원별 담당 모듈과 CODEOWNERS 대상
+- 코드 저장소 이름과 실제 빌드·실행·시험 명령
+- 실제 보드·센서·툴체인 버전과 대용량 데이터 저장 위치
 
-- 루트 `CONTRIBUTING.md`는 공통 기여 지침 역할을 합니다.
-- 프로젝트에 자체 기여 지침이 있으면 그 지침을 확인해야 합니다.
-- 기본 파일은 각 저장소로 복사되는 것이 아니므로 clone에 자동 포함되지 않습니다.
-- `profile/README.md`는 조직 홈 소개이며 협업 규칙을 강제하는 설정이 아닙니다.
-- `CODEOWNERS`는 조직 공통 기본 파일로 상속되지 않으므로 필요할 때 각 저장소에 설정합니다.
-- 이 문서 작업에서는 자동 적용되는 이슈·PR 템플릿이나 CODEOWNERS를 추가하지 않았습니다.
+확인되지 않은 내용을 임의로 작성하지 않습니다. 합의 후 [프로젝트 README 작성 틀](PROJECT_README_TEMPLATE.md)을 채우고 Overview에 요약합니다.
 
-## 공식 참고 자료
+## 공식 참고
 
 - [조직 공통 커뮤니티 파일](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
-- [GitHub의 병합 방식](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github)
+- [Ruleset](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
