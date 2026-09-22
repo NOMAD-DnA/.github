@@ -105,9 +105,13 @@
 
 ---
 
+### 새 프로젝트 준비
+
+[프로젝트 README 작성 틀](https://github.com/NOMAD-DnA/.github/blob/main/docs/PROJECT_README_TEMPLATE.md)에 목표·담당 모듈·개발 환경·시험 절차를 정리하세요. 구체적인 프로젝트 소개와 팀원 역할은 합의된 정보를 바탕으로 갱신합니다.
+
 ### 운영 안내
 
-협업 문서는 **팀 운영 초안**입니다. 리뷰 인원·병합 방식·CI 필수 조건은 팀 합의 후 확정하며, 문서 작성만으로 GitHub 설정이 자동 적용되지는 않습니다.
+기본 운영 기준은 **PR → 작성자 외 승인 1명 이상 → 검사 통과 → Squash 병합**입니다. [운영 안내](https://github.com/NOMAD-DnA/.github/blob/main/docs/REPOSITORY_SETUP.md)에서 템플릿·문서 CI와 설정 점검 방법을 확인하세요.
 
 이 `.github` 저장소는 조직 소개와 공통 협업 지침을 관리합니다. **프로젝트별 설치·빌드·실행·테스트 방법은 해당 저장소 README**를 기준으로 확인하세요.
 
