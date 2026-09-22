@@ -1,0 +1,28 @@
+name: 설계 논의
+description: 구현 전에 대안과 결정 기준 합의
+title: "[Design] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 논의할 문제와 제약
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 후보 방안과 장단점
+    validations:
+      required: true
+  - type: textarea
+    id: criteria
+    attributes:
+      label: 결정 기준 및 영향 범위
+      description: 성능, 구현 난이도, 인터페이스, 시험 가능성 등을 적어 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: conclusion
+    attributes:
+      label: 결론 및 후속 작업
+      description: 미정이면 미정으로 남기고, 합의 후 근거와 후속 이슈를 갱신하세요.
