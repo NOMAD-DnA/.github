@@ -120,6 +120,8 @@ Closes #실제이슈번호
 - 필수 수정과 선택 제안을 구분하고 이유를 설명합니다.
 - 질문만 있으면 Comment, 필수 수정이 남으면 Request changes, 확인을 마치면 Approve를 사용합니다.
 - 승인 후 변경이 추가되면 필요한 부분을 다시 확인합니다.
+- 실제 승인 순서는 **PR → Files changed → Review changes → Approve → Submit review**입니다. 단순 댓글이나 Comment 리뷰는 승인으로 인정되지 않습니다.
+- 필수 수정이 남으면 Request changes로 제출합니다. 변경 커밋으로 승인이 해제되면 수정 내용을 확인하고 다시 Approve합니다. 자세한 절차는 [Git 실전 가이드의 리뷰 안내](https://github.com/NOMAD-DnA/.github/blob/main/docs/GIT_GUIDE.md#리뷰어가-확인하고-승인하기)를 참고합니다.
 
 ## 5. 병합과 작업 종료
 
@@ -129,8 +131,8 @@ Closes #실제이슈번호
 - **branch → PR → review → merge** 순서로 진행합니다. 리뷰 전 직접 main에 push하거나 PR을 스스로 승인하지 않습니다.
 - GitHub에서 **Create a merge commit → Merge pull request → Confirm merge**로 병합합니다. Squash and merge와 Rebase and merge는 사용하지 않습니다.
 - 일반 Merge commit은 작업 브랜치의 개별 커밋을 유지하고 병합 커밋을 추가합니다. 커밋을 하나로 압축하거나 재작성하지 않으므로 작업 이력과 분기·병합 관계를 확인할 수 있습니다.
-- 최종 병합 제목도 `type: 변경 내용` 형식으로 정리합니다.
-- 병합 후 원격 작업 브랜치를 삭제하고, 로컬 main을 갱신합니다.
+- 일반 작업 커밋과 PR 제목은 `type: 변경 내용` 형식으로 작성합니다. **병합 커밋 제목은 GitHub 기본값인 `Merge pull request #번호 …`를 유지**하며, `type:` 형식으로 다시 바꾸지 않습니다.
+- 작업 브랜치는 자동 삭제하지 않습니다. **작성자가 PR 병합과 추가 미반영 작업이 없음을 확인한 후 원격·로컬 작업 브랜치를 수동 삭제**합니다. 공동 작업 중이라면 다른 작업자에게도 확인하고, 확신이 없으면 남겨 둡니다. 로컬 main은 먼저 갱신합니다.
 - 이슈의 완료 조건과 관련 문서를 확인하고 다음 작업은 새 브랜치에서 시작합니다.
 - 긴급 수정도 가능한 한 작은 PR로 진행합니다. 예외적인 처리는 사유와 사후 검증을 기록합니다.
 
