@@ -39,6 +39,10 @@
 
 ## 🤝 우리는 이렇게 협업합니다
 
+**branch → PR → review → merge**
+
+작업 브랜치에서 변경을 올리고, PR 리뷰 후 **일반 Merge commit**으로 병합합니다. Squash merge와 Rebase merge는 사용하지 않습니다.
+
 | 단계 | 할 일 | 남길 기록 |
 | :--- | :--- | :--- |
 | **01 · 작업 정의** | 이슈에서 문제와 범위를 맞춥니다. | 배경 · 담당자 · 완료 조건 |
@@ -111,7 +115,7 @@
 
 ### 운영 안내
 
-기본 운영 기준은 **PR → 작성자 외 승인 1명 이상 → 검사 통과 → Squash 병합**입니다. [운영 안내](https://github.com/NOMAD-DnA/.github/blob/main/docs/REPOSITORY_SETUP.md)에서 템플릿·문서 CI와 설정 점검 방법을 확인하세요.
+기본 운영 기준은 **PR → 작성자 외 승인 1명 이상 → 검사 통과 → 일반 Merge commit 병합**입니다. [운영 안내](https://github.com/NOMAD-DnA/.github/blob/main/docs/REPOSITORY_SETUP.md)에서 템플릿·문서 CI와 설정 점검 방법을 확인하세요.
 
 이 `.github` 저장소는 조직 소개와 공통 협업 지침을 관리합니다. **프로젝트별 설치·빌드·실행·테스트 방법은 해당 저장소 README**를 기준으로 확인하세요.
 
