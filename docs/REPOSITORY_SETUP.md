@@ -9,11 +9,17 @@
 - main 변경은 PR로 제안합니다.
 - 작성자 외 쓰기 권한이 있는 팀원 최소 1명이 승인합니다.
 - 추가 변경으로 기존 승인이 무효화되면 재리뷰합니다.
-- 리뷰 대화를 해결하고 docs-check 검사를 통과한 뒤 Squash and merge합니다.
+- 리뷰 대화를 해결하고 docs-check 검사를 통과한 뒤 Create a merge commit 방식으로 병합합니다.
 - 작성자는 승인·검사 상태를 확인한 뒤 병합합니다. 부재 시 리뷰어와 병합 담당자를 정합니다.
-- main 강제 push와 삭제를 막고, 병합된 작업 브랜치는 자동 정리합니다.
+- main 강제 push와 삭제를 제한합니다. 병합된 작업 브랜치 자동 삭제 설정은 변경하지 않으며, 필요하면 병합 확인 후 수동 정리합니다.
 
 위 기준의 실제 강제 여부는 GitHub Settings → Rules → Rulesets와 General에서 확인합니다. 문서와 설정은 별개이며, 설정 변경 PR/작업의 완료 기록을 함께 확인하세요.
+
+## 병합 방식
+
+협업 순서는 **branch → PR → review → merge**입니다. GitHub Settings → General → Pull Requests에서 **Allow merge commits**를 켜고 **Allow squash merging / Allow rebase merging**는 끕니다. PR에서는 **Create a merge commit** 방식으로 병합합니다.
+
+일반 merge와 충돌하는 **Require linear history** 규칙은 사용하지 않습니다. PR·리뷰·검사 요구사항은 병합 방식과 별도로 유지합니다. 이 설정은 저장소별 설정이므로 다른 코드 저장소에도 별도로 적용해야 합니다.
 
 ## 추가된 파일
 
