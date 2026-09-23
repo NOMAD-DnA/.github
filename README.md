@@ -9,9 +9,11 @@
 2. [협업 규칙](CONTRIBUTING.md)에서 브랜치·커밋·이슈·PR 작성 기준을 확인합니다.
 3. 저장소 관리자는 [운영 설정 체크리스트](docs/REPOSITORY_SETUP.md)를 확인합니다.
 
-기본 운영 기준은 **이슈 기반 작업 → PR 리뷰 → 승인 1명 이상 → 검사 통과 → Squash 병합**입니다. 이 저장소의 CI와 템플릿, 설정 점검 방법은 [운영 안내](docs/REPOSITORY_SETUP.md)를 확인합니다.
+기본 운영 기준은 **이슈 기반 작업 → PR 리뷰 → 승인 1명 이상 → 검사 통과 → 일반 Merge commit 병합**입니다. 이 저장소의 CI와 템플릿, 설정 점검 방법은 [운영 안내](docs/REPOSITORY_SETUP.md)를 확인합니다.
 
 ## 작업 흐름 한눈에 보기
+
+**branch → PR → review → merge**를 따릅니다. 리뷰 후 GitHub의 **Create a merge commit → Merge pull request**를 사용하며, Squash and merge / Rebase and merge는 사용하지 않습니다.
 
 이슈 작성 → 최신 main 확인 → 작업 브랜치 생성 → 수정·테스트 → commit → push → PR → 리뷰·수정 → merge → 최신 main으로 다음 작업
 
